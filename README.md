@@ -1,7 +1,7 @@
 # Engeto-projects
 ## SQL PROJECT
 
-1. Časové proměnné
+### 1. Časové proměnné
 * binární proměnná pro víkend / pracovní den
 	dayofweek -> case
 * roční období daného dne (zakódujte prosím jako 0 až 3)
