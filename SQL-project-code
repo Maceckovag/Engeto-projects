@@ -1,0 +1,91 @@
+select 
+cbd.country,
+cbd.date,
+cbd.confirmed,
+-- roční období:
+(CASE 
+	when QUARTER(cbd.date) = 1 then 0 
+	when QUARTER(cbd.date) = 2 then 1 
+	when QUARTER(cbd.date) = 3 then 2 
+	when QUARTER(cbd.date) = 4 then 3 END) as obdobi,
+-- pracovní den = 1, víkend = 0
+(CASE 
+	when DAYOFWEEK(cbd.date) = 7 or DAYOFWEEK(cbd.date) = 1 then  0 else 1 END) as typ_dne,
+-- hustota zalidnění
+c.population_density as population_density,
+-- HDP
+e.GDP as HDP,
+-- GINI koeficient
+e.gini as GINI,
+-- dětská úmrtnost
+e.mortaliy_under5 as d_umrtnost,
+-- medián věku obyvatel v roce 2018
+c.median_age_2018 as median_veku2018,
+-- náboženství
+r.religion as nabozenstvi,
+lt.population as populace,
+r.population as nab_populace,
+round((r.population/lt.population)*100,2) as podil_nabozenstvi,
+-- doba dožití
+-- round( le2015.life_expectancy - le1970.life_expectancy, 2 ) as rozdil_doziti,
+round(life_exp_2015-life_exp_1970,2) as rozdil_doziti2,
+
+-- průměrná denní teplota 
+avgtemp,
+-- počet hodin s nenulovými srážkami
+pocet_hodin,
+-- max vítr
+max_vitr
+from covid19_basic_differences cbd 
+left outer join countries c on cbd.country = c.country 
+left outer join economies e on cbd.country = e.country and e.year = 2020
+left outer join religions r on cbd.country = r.country and r.year = 2020
+left outer join lookup_table lt on cbd.country = lt.country 
+-- left outer join life_expectancy le1970 on cbd.country = le1970.country and le1970.year = 1970
+-- left outer join life_expectancy le2015 on cbd.country = le2015.country and le2015.year = 2015
+JOIN (
+    SELECT le.country , le.life_expectancy as life_exp_1970
+    FROM life_expectancy le 
+    WHERE year = 1970
+    ) a 
+    on cbd.country = a.country
+JOIN (
+    SELECT le.country , le.life_expectancy as life_exp_2015
+    FROM life_expectancy le 
+    WHERE year = 2015
+    ) b
+    ON cbd.country = b.country
+left outer join (
+	select city,
+	date,
+	c.country,
+	avg(temp) as avgtemp
+	from weather w 
+	join countries c on w.city = c.capital_city 
+	where hour between 6 and 18
+	group by date,city) w1
+on cbd.country = w1.country and cbd.date = w1.date
+
+left outer join (
+	select city,
+	date,
+	c.country,
+	count(hour) as pocet_hodin
+	from weather w 
+	join countries c on w.city = c.capital_city 
+	where rain > 0
+	group by date,city) w2
+on cbd.country = w2.country and cbd.date = w2.date
+
+left outer join (
+	select city,
+	date,
+	c.country,
+	max(wind) as max_vitr
+	from weather w 
+	join countries c on w.city = c.capital_city 
+	where rain > 0
+	group by date,city) w3
+on cbd.country = w3.country and cbd.date = w3.date
+
+		
