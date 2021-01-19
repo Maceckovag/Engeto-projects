@@ -7,7 +7,7 @@
 * roční období daného dne (zakódujte prosím jako 0 až 3)
 	quarter -> case
 
-2. Proměnné specifické pro daný stát
+### 2. Proměnné specifické pro daný stát
 - hustota zalidnění - ve státech s vyšší hustotou zalidnění se nákaza může šířit rychleji
 	join s tabulkou countries - levý -> vše z tab. differences a k tomu spojí údaje z tab. countries, pokud by statistik chtěl ve výsledku pouze country, které mají všechny chtěné hodnoty, může to omezit přímo přes join (left, right, inner atd.) 
 - HDP na obyvatele - použijeme jako indikátor ekonomické vyspělosti státu
@@ -29,7 +29,7 @@
 - rozdíl mezi očekávanou dobou dožití v roce 1965 a v roce 2015 - státy, ve kterých proběhl rychlý rozvoj mohou reagovat jinak než země, které jsou vyspělé už delší dobu
 	join dvakrát stejné tabulky, jen s různými roky
 
-3. Počasí (ovlivňuje chování lidí a také schopnost šíření viru)
+### 3. Počasí (ovlivňuje chování lidí a také schopnost šíření viru)
 - průměrná denní (nikoli noční!) teplota
 	denní považuji od 6 do 18
 - počet hodin v daném dni, kdy byly srážky nenulové
