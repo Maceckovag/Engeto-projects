@@ -36,3 +36,6 @@
 	beru již celý den, ne od 6 do 18, nevím, zda jsem správně pochopila zadání
 - maximální síla větru v nárazech během dne
 	beru již celý den, ne od 6 do 18, nevím, zda jsem správně pochopila zadání
+	
+
+## PYTHON PROJECT
