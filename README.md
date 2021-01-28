@@ -39,3 +39,18 @@
 	
 
 ## PYTHON PROJECT
+### 1. Proveďte standardní deskriptivní statistiku dat.
+### 2. Identifikujte následující informace
+
+* identifikujte aktivní a neaktivní stanice
+* identifikujte nejfrekventovanější stanice
+* identifikujte stanice, na kterých se kola hromadí a stanice, kde potenciálně chybí
+* spočítejte vzdálenosti mezi jednotlivými stanicemi
+* jak dlouho trvá jedna výpůjčka? Najděte odlehlé hodnoty, zobrazte histogram
+
+### 3. Analýza poptávky:
+
+* zobrazte vývoj poptávky po půjčování kol v čase
+* identifikujte příčiny výkyvů poptávky
+* zjistěte vliv počasí na poptávku po kolech (údaje o počasí v Edinburghu jsou v tabulce edinburgh_weather)
+* půjčují si lidé kola více o víkendu než během pracovního týdne?
