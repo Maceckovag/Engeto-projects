@@ -9,9 +9,9 @@
 
 ### 2. Proměnné specifické pro daný stát
 - hustota zalidnění - ve státech s vyšší hustotou zalidnění se nákaza může šířit rychleji
-	join s tabulkou countries - levý -> vše z tab. differences a k tomu spojí údaje z tab. countries, pokud by statistik chtěl ve výsledku pouze country, které mají všechny chtěné hodnoty, může to omezit přímo přes join (left, right, inner atd.) 
+	-- join s tabulkou countries - levý -> vše z tab. differences a k tomu spojí údaje z tab. countries, pokud by statistik chtěl ve výsledku pouze country, které mají všechny chtěné hodnoty, může to omezit přímo přes join (left, right, inner atd.) 
 - HDP na obyvatele - použijeme jako indikátor ekonomické vyspělosti státu
-	join s tabulkou economies přes country a volíme hodnoty z roku 2020 
+	-- join s tabulkou economies přes country a volíme hodnoty z roku 2020 
 	pro rok 2020 chybí hodnoty HDP v tabulce economies, v době kontroly tohoto projektu (2021) už data možná budou
 - GINI koeficient - má majetková nerovnost vliv na šíření koronaviru?
 	join s tabulkou economies přes country a volíme hodnoty z roku 2020
